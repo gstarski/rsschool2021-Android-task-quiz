@@ -66,7 +66,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_end="16dp" />
 
-
             <TextView
                 android:id="@+id/question"
                 android:layout_width="0dp"
@@ -89,32 +88,9 @@
                     android:id="@+id/option_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Option 1" />
-
-                <RadioButton
-                    android:id="@+id/option_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Option 2" />
-
-                <RadioButton
-                    android:id="@+id/option_three"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Option 3" />
-
-                <RadioButton
-                    android:id="@+id/option_four"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:checked="true"
-                    tools:text="Option 4" />
-
-                <RadioButton
-                    android:id="@+id/option_five"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Option 5" />
+                    android:visibility="gone"
+                    tools:text="Sample answer 1"
+                    tools:visibility="visible" />
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
