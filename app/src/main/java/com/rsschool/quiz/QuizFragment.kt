@@ -15,7 +15,9 @@ import com.rsschool.quiz.databinding.FragmentQuizBinding
 import com.rsschool.quiz.utils.getThemeCycled
 
 class QuizFragment : Fragment() {
-    private lateinit var binding: FragmentQuizBinding
+    private var _binding: FragmentQuizBinding? = null
+    private val binding get() = _binding!! // valid only between onCreateView and onDestroyView
+
     private val args: QuizFragmentArgs by navArgs()
     private val questions = getSampleQuestions()
 
@@ -29,7 +31,7 @@ class QuizFragment : Fragment() {
     ): View {
         val wrapper = ContextThemeWrapper(context, getThemeCycled(args.questionIndex))
         val customThemeInflater = inflater.cloneInContext(wrapper)
-        binding = FragmentQuizBinding.inflate(customThemeInflater, container, false)
+        _binding = FragmentQuizBinding.inflate(customThemeInflater, container, false)
         return binding.root
     }
 
@@ -39,6 +41,11 @@ class QuizFragment : Fragment() {
         populateWithData()
         attachListeners()
         adjustButtons()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun populateWithData() {
