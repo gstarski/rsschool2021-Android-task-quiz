@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/quizFragment">
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.rsschool.quiz.QuizFragment"
+        android:label="fragment_quiz">
+
+        <action
+            android:id="@+id/action_quizFragment_self"
+            app:destination="@id/quizFragment" >
+            <argument
+                android:name="questionIndex"
+                android:defaultValue="0" />
+        </action>
+        <argument
+            android:name="questionIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+
+</navigation>
