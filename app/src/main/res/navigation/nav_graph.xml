@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/quizFragment">
 
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.rsschool.quiz.QuizFragment"
-        android:label="fragment_quiz">
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz">
+
+        <argument
+            android:name="questionIndex"
+            android:defaultValue="0"
+            app:argType="integer" />
 
         <action
             android:id="@+id/action_quizFragment_self"
+            app:destination="@id/quizFragment">
+            <argument
+                android:name="questionIndex"
+                android:defaultValue="0" />
+        </action>
+        <action
+            android:id="@+id/action_quizFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.rsschool.quiz.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <action
+            android:id="@+id/action_resultFragment_to_quizFragment"
             app:destination="@id/quizFragment" >
             <argument
                 android:name="questionIndex"
                 android:defaultValue="0" />
         </action>
-        <argument
-            android:name="questionIndex"
-            app:argType="integer"
-            android:defaultValue="0" />
     </fragment>
-
-
 </navigation>

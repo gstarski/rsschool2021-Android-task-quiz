@@ -116,23 +116,8 @@ class QuizFragment : Fragment() {
         }
 
         binding.submitButton.setOnClickListener {
-            val questions = questionStorage.getQuestions()
-            val correctCount = questions.foldIndexed(0)
-            { questionIndex, correctCount, question ->
-                val correct = question.correctAnswerIndex
-                val selected = questionStorage.getAnswerIndex(questionIndex)
-                if (correct == selected) correctCount + 1 else correctCount
-            }
-
-            val percents = (correctCount.toFloat() / questions.count() * 100).roundToInt()
-
-            Toast.makeText(
-                context,
-                "$correctCount of ${questions.count()} correct ($percents%)",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            // TODO: navigate to result fragment and clear saved answers
+            val action = QuizFragmentDirections.actionQuizFragmentToResultFragment()
+            it.findNavController().navigate(action)
         }
     }
 }
