@@ -2,12 +2,10 @@ package com.rsschool.quiz
 
 import android.content.Context
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,7 +13,6 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.rsschool.quiz.data.QuestionStorage
 import com.rsschool.quiz.databinding.FragmentQuizBinding
 import com.rsschool.quiz.utils.getThemeCycled
-import kotlin.math.roundToInt
 
 class QuizFragment : Fragment() {
     private var _binding: FragmentQuizBinding? = null
@@ -32,9 +29,8 @@ class QuizFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val wrapper = ContextThemeWrapper(context, getThemeCycled(args.questionIndex))
-        val customThemeInflater = inflater.cloneInContext(wrapper)
-        _binding = FragmentQuizBinding.inflate(customThemeInflater, container, false)
+        activity?.setTheme(getThemeCycled(args.questionIndex))
+        _binding = FragmentQuizBinding.inflate(inflater, container, false)
         return binding.root
     }
 
