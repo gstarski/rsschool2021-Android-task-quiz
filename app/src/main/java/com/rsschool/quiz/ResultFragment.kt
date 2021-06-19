@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.rsschool.quiz.data.QuestionStorage
 import com.rsschool.quiz.databinding.FragmentResultBinding
 import kotlin.math.roundToInt
@@ -15,6 +16,8 @@ import kotlin.math.roundToInt
 class ResultFragment : Fragment() {
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!! // valid only between onCreateView and onDestroyView
+
+    private lateinit var questionStorage: QuestionStorage
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +30,8 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val questionStorage = QuestionStorage(activity?.getPreferences(Context.MODE_PRIVATE)!!)
+        questionStorage = QuestionStorage(activity?.getPreferences(Context.MODE_PRIVATE)!!)
         val questions = questionStorage.getQuestions()
-
         val results = questions.mapIndexed { questionIndex, question ->
             val answerIndex = questionStorage.getAnswerIndex(questionIndex)
             object {
@@ -67,14 +69,23 @@ class ResultFragment : Fragment() {
         }
 
         binding.buttonRestart.setOnClickListener {
-            questionStorage.clearAnswers()
-            val action = ResultFragmentDirections.actionResultFragmentToQuizFragment(0)
-            it.findNavController().navigate(action)
+            restartTest()
         }
 
         binding.buttonExit.setOnClickListener {
+            questionStorage.clearAnswers()
             activity?.finishAndRemoveTask()
         }
+
+        activity?.onBackPressedDispatcher?.addCallback {
+            restartTest()
+        }
+    }
+
+    private fun restartTest() {
+        questionStorage.clearAnswers()
+        val action = ResultFragmentDirections.actionResultFragmentToQuizFragment(0)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
