@@ -76,6 +76,10 @@ class QuizFragment : Fragment() {
             binding.submitButton.visibility = View.VISIBLE
         }
 
+        if (args.questionIndex == 0) {
+            binding.toolbar.navigationIcon = null
+        }
+
         // Buttons are disabled by default
         if (args.questionIndex != 0) {
             binding.previousButton.isEnabled = true
@@ -97,9 +101,7 @@ class QuizFragment : Fragment() {
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            if (args.questionIndex == 0) {
-                activity?.moveTaskToBack(true)
-            } else {
+            if (args.questionIndex != 0) {
                 it.findNavController().popBackStack()
             }
         }
