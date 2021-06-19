@@ -52,7 +52,8 @@ class ResultFragment : Fragment() {
             sb.appendLine("Quiz results\n\nYour result: $percents %\n")
 
             for ((index, result) in results.withIndex()) {
-                sb.appendLine("$index) ${result.question}\nYour answer: ${result.answer}\n")
+                sb.appendLine("${index + 1}) ${result.question}")
+                sb.appendLine("Your answer: ${result.answer}\n")
             }
 
             val sendIntent = Intent().apply {
