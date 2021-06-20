@@ -80,18 +80,12 @@
                 android:id="@+id/radio_group_answers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@id/margin_end_guideline"
                 app:layout_constraintStart_toStartOf="@id/margin_start_guideline"
                 app:layout_constraintTop_toBottomOf="@id/question">
 
-<!--                <RadioButton-->
-<!--                    android:id="@+id/option_one"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:visibility="gone"-->
-<!--                    tools:text="Sample answer 1"-->
-<!--                    tools:visibility="visible" />-->
-
+                <!-- Populated programmatically from QuizFragment -->
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

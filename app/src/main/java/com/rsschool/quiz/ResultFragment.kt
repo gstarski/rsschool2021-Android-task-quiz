@@ -37,9 +37,9 @@ class ResultFragment : Fragment() {
             object {
                 val question = question.question
                 val answeredCorrectly = answerIndex == question.correctAnswerIndex
-                val answer = when {
-                    answerIndex != -1 -> question.answers.toList()[answerIndex]
-                    else -> "Error: no answer"
+                val answer = when (answerIndex) {
+                    -1 -> "Error: no answer"
+                    else -> question.answers.toList()[answerIndex]
                 }
             }
         }
@@ -77,7 +77,9 @@ class ResultFragment : Fragment() {
             activity?.finishAndRemoveTask()
         }
 
-        activity?.onBackPressedDispatcher?.addCallback {
+        // Passing 'this' fragment as lifecycle owner ensures that the callback
+        // will not be called when the fragment is not active.
+        activity?.onBackPressedDispatcher?.addCallback(this) {
             restartTest()
         }
     }

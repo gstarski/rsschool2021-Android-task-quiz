@@ -2,6 +2,7 @@ package com.rsschool.quiz
 
 import android.content.Context
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,8 +56,9 @@ class QuizFragment : Fragment() {
         for ((index, answer) in question.answers.withIndex()) {
             val button = MaterialRadioButton(requireContext())
             button.text = answer
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             button.layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
             binding.radioGroupAnswers.addView(button)

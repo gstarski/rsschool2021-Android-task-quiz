@@ -33,9 +33,13 @@
         android:name="com.rsschool.quiz.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result">
+
+        <!-- 'popUpTo' ensures that all screens are popped from the backstack during this action. -->
+        <!-- That is, there will be only one QuizFragment in the backstack. -->
         <action
             android:id="@+id/action_resultFragment_to_quizFragment"
-            app:destination="@id/quizFragment" >
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/nav_graph">
             <argument
                 android:name="questionIndex"
                 android:defaultValue="0" />
